@@ -4,6 +4,11 @@ import juanMendoza from "@/assets/images/Juan Mendoza.png";
 import francisReyes from "@/assets/images/FRANCIS REYES.png";
 import stalinRivas from "@/assets/images/Stalin Rivas.png";
 import qikLogo from "@/assets/images/Qik.png";
+import sicflexLogo from "@/assets/images/clientes/SicFlex-Cloud-Software-Solution.svg";
+import novositLogo from "@/assets/images/clientes/NOVOSIT-logo.png";
+import wepsysLogo from "@/assets/images/image439.png";
+import insoltechLogo from "@/assets/images/g467.png";
+
 import comillasImg from "@/assets/images/comillas.png";
 
 const testimonios = ref([
@@ -16,6 +21,9 @@ const testimonios = ref([
     testimonio:
       "Gracias al equipo de Marzan Mercado Consulting por su profesionalismo y dedicación durante todo el proceso de migración a la nueva infraestructura de Google. La transición fue impecable y notamos una mejora inmediata en el rendimiento y la fiabilidad. Para Sicflex Cloud, la nueva arquitectura ha optimizado nuestros procesos y nos permite ofrecer un mejor servicio a nuestros clientes. La migración a Google Cloud se completó sin problemas y hemos visto una reducción en los tiempos de respuesta de la aplicación. Ahora podemos escalar nuestros servicios de manera más eficiente, lo que significa que nuestros clientes experimentan menos interrupciones y una mayor disponibilidad. ¡Trabajar con un equipo de profesionales del nivel de Marzan Mercado Consulting es lo mejor que ha sucedido en nuestra empresa!",
     rating: 5,
+    logos : [
+        sicflexLogo
+    ]
   },
   {
     id: 2,
@@ -26,6 +34,9 @@ const testimonios = ref([
     testimonio:
       "Trabajar con el equipo de Marzan Mercado Consulting transformó por completo nuestra Plataforma ProDoctivity Cloud. Modernizaron nuestra infraestructura con Kubernetes e integraron la automatización DevOps en nuestro flujo de trabajo. Ahora implementamos más rápido, escalamos sin esfuerzo y operamos con mucha mayor fiabilidad y confianza. Nuestro rendimiento ha mejorado, los costes se han optimizado y nos sentimos preparados para el futuro como nunca antes. ¡Una experiencia realmente extraordinaria!",
     rating: 5,
+    logos : [
+      novositLogo
+    ]
   },
   {
     id: 3,
@@ -36,6 +47,10 @@ const testimonios = ref([
     testimonio:
       "Contar con el apoyo de profesionales de alto perfil como los pertenecientes a Marzan Mercado Consulting genera altos niveles de confianza a todo el personal que forma parte de los proyectos de implementación de SDLCs y ALMs, elementos que en Wepsys Latam e Insoltech impulsamos constantemente, tanto internamente como para ambientes en nuestros clientes. Recientemente hemos implementado todo un ciclo de vida de desarrollo de software utilizando las más recientes y mejores prácticas de DevSecOps resultando en una implementación exitosa para uno de nuestros clientes del sector bancario en Panamá. Continuaremos utilizando los servicios de MMC en todos los proyectos futuros en los que sea posible, para así mantener el nivel de excelencia que hasta ahora hemos podido llevar a nuestros clientes.",
     rating: 5,
+    logos : [
+      insoltechLogo,
+      wepsysLogo
+    ]
   },
   {
     id: 4,
@@ -46,6 +61,7 @@ const testimonios = ref([
     testimonio:
       "Durante el año 2023, Marzan Mercado Consulting fue un socio clave en el fortalecimiento de nuestra gobernanza tecnológica y en la mejora de la resiliencia operativa. Sus servicios de consultoría y auditoría IT nos permitieron identificar riesgos críticos, cerrar brechas de cumplimiento y elevar nuestros estándares de seguridad sin afectar la continuidad del negocio. Su enfoque combinó experiencia técnica con una metodología clara y orientada a resultados. Gracias a su acompañamiento, implementamos controles más robustos, optimizamos procesos internos y alineamos nuestras prácticas con marcos regulatorios y de seguridad reconocidos. Este trabajo se tradujo en beneficios tangibles: mayor eficiencia, mejor gestión del riesgo y una base sólida para el crecimiento futuro. Valoramos especialmente la profesionalidad y compromiso de Marzan. Su aporte nos ha permitido operar con mayor confianza en un entorno digital cada vez más complejo.",
     rating: 5,
+    logos : []
   },
 ]);
 
@@ -113,7 +129,7 @@ onUnmounted(() => {
         <!-- Botones de Navegación - Fuera de la card -->
         <button
           @click="prevTestimonial"
-          class="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 md:-translate-x-12 bg-white/90 hover:bg-white text-[#4f2d7f] p-4 md:p-5 rounded-full transition-all z-10 shadow-lg hover:shadow-xl"
+          class="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-2 md:-translate-x-12 bg-white/90 hover:bg-white text-[#4f2d7f] p-3 md:p-5 rounded-full transition-all z-10 shadow-lg hover:shadow-xl"
           aria-label="Testimonio anterior"
         >
           <svg
@@ -133,7 +149,7 @@ onUnmounted(() => {
 
         <!-- Testimonios Carousel -->
         <div
-          class="relative overflow-hidden rounded-2xl bg-[#4f2d7f] shadow-xl"
+          class="relative overflow-hidden rounded-2xl shadow-xl border-2 border-[#4f2d7f]"
         >
           <div
             class="flex transition-transform duration-500 ease-in-out"
@@ -142,58 +158,70 @@ onUnmounted(() => {
             <div
               v-for="testimonio in testimonios"
               :key="testimonio.id"
-              class="flex items-center min-w-full px-8 md:px-16 py-12 md:py-16"
+              class="flex flex-col lg:flex-row items-stretch min-w-full"
             >
-              <div class="max-w-5xl mx-auto">
-                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
-                  <!-- Comilla Grande y Texto -->
-                  <div class="lg:col-span-2 relative">
-                    <!-- Comilla de Apertura - Imagen -->
-                    <div
-                      class="absolute -top-2 -left-2 select-none pointer-events-none z-0"
-                    >
-                      <img
-                        :src="comillasImg"
-                        alt="Comillas decorativas"
-                        class="w-[60px] md:w-[80px] h-auto opacity-30"
-                      />
-                    </div>
-
-                    <!-- Texto del Testimonio -->
-                    <p
-                      class="text-white text-lg md:text-xl leading-relaxed relative z-10 pt-8 pl-4"
-                    >
-                      {{ testimonio.testimonio }}
-                    </p>
-                  </div>
-
-                  <!-- Información del Cliente -->
-                  <div
-                    class="lg:col-span-1 flex flex-col items-center text-center"
+              <!-- Panel Blanco - Información del Cliente (Arriba en móvil, Derecha en desktop) -->
+              <div
+                class="w-full lg:w-1/3 bg-white rounded-t-2xl lg:rounded-t-none lg:rounded-r-2xl px-4 md:px-8 lg:px-12 py-8 md:py-12 lg:py-16 flex flex-row lg:flex-col items-center justify-center text-center gap-4 lg:gap-0 order-1 lg:order-2"
+              >
+                <!-- Imagen - Centrada y más grande -->
+                <div
+                  class="w-32 h-32 md:w-40 md:h-40 lg:w-56 lg:h-56 rounded-full bg-gray-100 border-4 border-gray-200 lg:mb-6 flex items-center justify-center overflow-hidden flex-shrink-0"
+                >
+                  <img
+                    :src="testimonio.imagen"
+                    :alt="testimonio.nombre"
+                    class="w-full h-full object-cover rounded-full"
+                  />
+                </div>
+                
+                <!-- Información - Centrada -->
+                <div class="flex flex-col items-center justify-center text-center">
+                  <p class="text-gray-900 font-bold text-xl md:text-2xl lg:text-3xl mb-1 lg:mb-2">
+                    {{ testimonio.nombre }}
+                  </p>
+                  <p
+                    v-if="testimonio.cargo"
+                    class="text-gray-700 text-sm md:text-base lg:text-lg mb-1 font-medium"
                   >
-                    <div
-                      class="w-48 h-48 md:w-56 md:h-56 rounded-full bg-white/10 border-4 border-white/20 mb-6 flex items-center justify-center overflow-hidden"
-                    >
-                      <img
-                        :src="testimonio.imagen"
-                        :alt="testimonio.nombre"
-                        class="w-full h-full object-cover rounded-full"
-                      />
-                    </div>
-                    <p class="text-white font-bold text-3xl mb-2">
-                      {{ testimonio.nombre }}
-                    </p>
-                    <p
-                      v-if="testimonio.cargo"
-                      class="text-white/80 text-lg mb-1"
-                    >
-                      {{ testimonio.cargo }}
-                    </p>
-                    <p class="text-white/80 text-lg mb-2">
-                      {{ testimonio.empresa }}
-                    </p>
+                    {{ testimonio.cargo }}
+                  </p>
+                  <p class="text-gray-700 text-sm md:text-base lg:text-lg mb-2 font-medium">
+                    {{ testimonio.empresa }}
+                  </p>
 
+                  <div v-if="testimonio.logos && testimonio.logos.length > 0" class="flex flex-wrap justify-center gap-2 lg:gap-4 mt-2 lg:mt-4">
+                    <img
+                      v-for="(logo, logoIndex) in testimonio.logos"
+                      :key="logoIndex"
+                      :src="logo"
+                      :alt="`Logo de ${testimonio.empresa}`"
+                      class="h-6 md:h-8 lg:h-12 w-auto object-contain"
+                    />
                   </div>
+                </div>
+              </div>
+
+              <!-- Panel Morado - Texto del Testimonio (Abajo en móvil, Izquierda en desktop) -->
+              <div class="w-full lg:w-2/3 bg-[#4f2d7f] h-full rounded-b-2xl lg:rounded-b-none lg:rounded-l-2xl px-8 md:px-12 py-12 md:py-16 flex items-center order-2 lg:order-1">
+                <div class="relative w-full">
+                  <!-- Comilla de Apertura - Imagen -->
+                  <div
+                    class="absolute -top-2 -left-2 select-none pointer-events-none z-0"
+                  >
+                    <img
+                      :src="comillasImg"
+                      alt="Comillas decorativas"
+                      class="w-[60px] md:w-[80px] h-auto opacity-30"
+                    />
+                  </div>
+
+                  <!-- Texto del Testimonio -->
+                  <p
+                    class="text-white text-lg md:text-xl leading-relaxed relative z-10 pt-8 pl-4 text-left"
+                  >
+                    {{ testimonio.testimonio }}
+                  </p>
                 </div>
               </div>
             </div>
@@ -202,7 +230,7 @@ onUnmounted(() => {
 
         <button
           @click="nextTestimonial"
-          class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 md:translate-x-12 bg-white/90 hover:bg-white text-[#4f2d7f] p-4 md:p-5 rounded-full transition-all z-10 shadow-lg hover:shadow-xl"
+          class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-2 md:translate-x-12 bg-white/90 hover:bg-white text-[#4f2d7f] p-3 md:p-5 rounded-full transition-all z-10 shadow-lg hover:shadow-xl"
           aria-label="Siguiente testimonio"
         >
           <svg

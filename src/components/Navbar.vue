@@ -1,14 +1,37 @@
 <script setup>
 import { ref, onMounted, onUnmounted } from "vue";
+import { RouterLink, useRoute } from "vue-router";
 import logoFull from "@/assets/images/MMC-logo.png";
 import { useContactModal } from "@/composables/useContactModal";
+
+const route = useRoute();
 
 const { openModal } = useContactModal();
 
 const activeSection = ref("inicio");
 const isMobileMenuOpen = ref(false);
+const isInsigniasDropdownOpen = ref(false);
 
 const sections = ["inicio", "productos", "nosotros", "pagos", "clientes"];
+
+const insignias = [
+  { 
+    nombre: "DevOps Engineer Associate",
+    slug: "devops-engineer-associate"
+  },
+  { 
+    nombre: "DevOps Engineer Practitioner",
+    slug: "devops-engineer-practitioner"
+  },
+  { 
+    nombre: "DevOps Engineer Professional",
+    slug: "devops-engineer-professional"
+  },
+  { 
+    nombre: "DevSecOps Engineer Practitioner",
+    slug: "devsecops-engineer-practitioner"
+  },
+];
 
 const updateActiveSection = () => {
   const scrollPosition = window.scrollY + 100;
@@ -36,16 +59,27 @@ const handleLinkClick = (e, section) => {
   isMobileMenuOpen.value = false;
   // Solo hacer scroll para inicio, pagos y clientes
   if (["inicio", "pagos", "clientes"].includes(section)) {
-    setTimeout(() => {
-      const element = document.getElementById(section);
-      if (element) {
-        const offsetTop = element.offsetTop - 80; // Ajustar para el navbar fijo
-        window.scrollTo({
-          top: offsetTop,
-          behavior: "smooth",
-        });
-      }
-    }, 100);
+    if (section === "inicio") {
+      // Si es inicio, siempre ir al top de la página
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    } else {
+      // Para pagos y clientes, hacer scroll a la sección
+      setTimeout(() => {
+        const element = document.getElementById(section);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+          const offsetTop = rect.top + scrollTop - 80; // Ajustar para el navbar fijo
+          window.scrollTo({
+            top: offsetTop,
+            behavior: "smooth",
+          });
+        }
+      }, 150);
+    }
   }
 };
 
@@ -74,9 +108,9 @@ onUnmounted(() => {
     class="flex items-center justify-between gap-4 px-4 md:px-18 py-3 bg-[#4f2d7f]/90 md:shadow-md border-b border-transparent fixed top-0 left-0 right-0 z-50"
     aria-label="Primary"
   >
-    <a
+    <RouterLink
+      to="/"
       class="flex items-center shrink-0"
-      href="/"
       aria-label="Marzan Mercado Consulting"
     >
       <img
@@ -84,12 +118,22 @@ onUnmounted(() => {
         alt="Marzan Mercado Consulting"
         class="h-12 md:h-16 my-2 w-auto border rounded-[2px] border-white"
       />
-    </a>
+    </RouterLink>
 
     <!-- Desktop Menu -->
     <ul class="hidden lg:flex items-center gap-3 justify-center flex-1">
       <li>
+        <RouterLink
+          v-if="route.name !== 'home'"
+          to="/"
+          :class="[
+            'text-white border px-4 py-2 rounded-lg transition-colors duration-200 hover:border-white/40 font-medium uppercase',
+            route.name === 'home' ? 'border-white' : 'border-transparent',
+          ]"
+          >Inicio</RouterLink
+        >
         <a
+          v-else
           :class="[
             'text-white border px-4 py-2 rounded-lg transition-colors duration-200 hover:border-white/40 font-medium uppercase',
             activeSection === 'inicio' ? 'border-white' : 'border-transparent',
@@ -100,33 +144,77 @@ onUnmounted(() => {
         >
       </li>
       <li>
-        <a
+        <RouterLink
+          :to="{ name: 'productos-servicios' }"
           :class="[
             'text-white border px-4 py-2 rounded-lg transition-colors duration-200 hover:border-white/40 font-medium uppercase',
-            activeSection === 'productos'
+            route.name === 'productos-servicios'
               ? 'border-white'
               : 'border-transparent',
           ]"
-          href="#"
-          @click.prevent="(e) => handleLinkClick(e, 'productos')"
-          >PRODUCTOS Y SERVICIOS</a
+          >PRODUCTOS Y SERVICIOS</RouterLink
         >
       </li>
       <li>
-        <a
+        <RouterLink
+          :to="{ name: 'nosotros' }"
           :class="[
             'text-white border px-4 py-2 rounded-lg transition-colors duration-200 hover:border-white/40 font-medium uppercase',
-            activeSection === 'nosotros'
-              ? 'border-white'
-              : 'border-transparent',
+            route.name === 'nosotros' ? 'border-white' : 'border-transparent',
           ]"
-          href="#"
-          @click.prevent="(e) => handleLinkClick(e, 'nosotros')"
-          >NOSOTROS</a
+          >NOSOTROS</RouterLink
         >
       </li>
+      <li 
+        class="relative"
+        @mouseenter="isInsigniasDropdownOpen = true"
+        @mouseleave="isInsigniasDropdownOpen = false"
+      >
+        <RouterLink
+          :to="{ name: 'insignias' }"
+          :class="[
+            'text-white border px-4 py-2 rounded-lg transition-colors duration-200 hover:border-white/40 font-medium uppercase',
+            route.name === 'insignias' || route.name === 'insignia-detalle' ? 'border-white' : 'border-transparent',
+          ]"
+          >INSIGNIAS</RouterLink
+        >
+        <!-- Dropdown Menu -->
+        <div
+          v-if="isInsigniasDropdownOpen"
+          class="absolute top-full left-0 mt-1 w-96 bg-white rounded-lg shadow-2xl z-50 border border-gray-300 overflow-hidden"
+        >
+          <div class="py-1">
+            <RouterLink
+              :to="{ name: 'insignias' }"
+              class="block px-5 py-3 text-[#4f2d7f] hover:bg-[#4f2d7f] hover:text-white transition-colors font-bold uppercase text-xs tracking-wide border-b border-gray-200"
+              @click="isInsigniasDropdownOpen = false"
+            >
+              Ver Todas las Insignias
+            </RouterLink>
+            <RouterLink
+              v-for="insignia in insignias"
+              :key="insignia.slug"
+              :to="{ name: 'insignia-detalle', params: { slug: insignia.slug } }"
+              class="block px-5 py-3.5 text-gray-800 hover:bg-[#4f2d7f] hover:text-white transition-colors text-sm font-medium leading-relaxed"
+              @click="isInsigniasDropdownOpen = false"
+            >
+              {{ insignia.nombre }}
+            </RouterLink>
+          </div>
+        </div>
+      </li>
       <li>
+        <RouterLink
+          v-if="route.name !== 'home'"
+          to="/#pagos"
+          :class="[
+            'text-white border px-4 py-2 rounded-lg transition-colors duration-200 hover:border-white/40 font-medium uppercase',
+            'border-transparent',
+          ]"
+          >PAGOS</RouterLink
+        >
         <a
+          v-else
           :class="[
             'text-white border px-4 py-2 rounded-lg transition-colors duration-200 hover:border-white/40 font-medium uppercase',
             activeSection === 'pagos' ? 'border-white' : 'border-transparent',
@@ -137,7 +225,17 @@ onUnmounted(() => {
         >
       </li>
       <li>
+        <RouterLink
+          v-if="route.name !== 'home'"
+          to="/#clientes"
+          :class="[
+            'text-white border px-4 py-2 rounded-lg transition-colors duration-200 hover:border-white/40 font-medium uppercase',
+            'border-transparent',
+          ]"
+          >NUESTROS CLIENTES</RouterLink
+        >
         <a
+          v-else
           :class="[
             'text-white border px-4 py-2 rounded-lg transition-colors duration-200 hover:border-white/40 font-medium uppercase',
             activeSection === 'clientes'
@@ -197,7 +295,18 @@ onUnmounted(() => {
   >
     <ul class="flex flex-col p-4 gap-2">
       <li>
+        <RouterLink
+          v-if="route.name !== 'home'"
+          to="/"
+          :class="[
+            'block text-white border px-4 py-3 rounded-lg transition-colors duration-200 hover:border-white/40 font-medium uppercase',
+            route.name === 'home' ? 'border-white' : 'border-transparent',
+          ]"
+          @click="isMobileMenuOpen = false"
+          >Inicio</RouterLink
+        >
         <a
+          v-else
           :class="[
             'block text-white border px-4 py-3 rounded-lg transition-colors duration-200 hover:border-white/40 font-medium uppercase',
             activeSection === 'inicio' ? 'border-white' : 'border-transparent',
@@ -208,33 +317,83 @@ onUnmounted(() => {
         >
       </li>
       <li>
-        <a
+        <RouterLink
+          :to="{ name: 'productos-servicios' }"
           :class="[
             'block text-white border px-4 py-3 rounded-lg transition-colors duration-200 hover:border-white/40 font-medium uppercase',
-            activeSection === 'productos'
+            route.name === 'productos-servicios'
               ? 'border-white'
               : 'border-transparent',
           ]"
-          href="#"
-          @click.prevent="(e) => handleLinkClick(e, 'productos')"
-          >PRODUCTOS Y SERVICIOS</a
+          @click="isMobileMenuOpen = false"
+          >PRODUCTOS Y SERVICIOS</RouterLink
         >
       </li>
       <li>
-        <a
+        <RouterLink
+          :to="{ name: 'nosotros' }"
           :class="[
             'block text-white border px-4 py-3 rounded-lg transition-colors duration-200 hover:border-white/40 font-medium uppercase',
-            activeSection === 'nosotros'
-              ? 'border-white'
-              : 'border-transparent',
+            route.name === 'nosotros' ? 'border-white' : 'border-transparent',
           ]"
-          href="#"
-          @click.prevent="(e) => handleLinkClick(e, 'nosotros')"
-          >NOSOTROS</a
+          @click="isMobileMenuOpen = false"
+          >NOSOTROS</RouterLink
         >
       </li>
       <li>
+        <div>
+          <button
+            @click="isInsigniasDropdownOpen = !isInsigniasDropdownOpen"
+            :class="[
+              'w-full text-left text-white border px-4 py-3 rounded-lg transition-colors duration-200 hover:border-white/40 font-medium uppercase flex items-center justify-between',
+              route.name === 'insignias' || route.name === 'insignia-detalle' ? 'border-white' : 'border-transparent',
+            ]"
+          >
+            INSIGNIAS
+            <i 
+              :class="[
+                'fas transition-transform',
+                isInsigniasDropdownOpen ? 'fa-chevron-up' : 'fa-chevron-down'
+              ]"
+            ></i>
+          </button>
+          <!-- Mobile Dropdown -->
+          <div
+            v-if="isInsigniasDropdownOpen"
+            class="mt-2 bg-[#4f2d7f]/95 rounded-lg overflow-hidden"
+          >
+            <RouterLink
+              :to="{ name: 'insignias' }"
+              class="block px-4 py-3 text-white hover:bg-white/10 transition-colors text-sm font-semibold uppercase border-b border-white/20"
+              @click="isMobileMenuOpen = false; isInsigniasDropdownOpen = false"
+            >
+              Ver Todas
+            </RouterLink>
+            <RouterLink
+              v-for="insignia in insignias"
+              :key="insignia.slug"
+              :to="{ name: 'insignia-detalle', params: { slug: insignia.slug } }"
+              class="block px-6 py-3 text-white/90 hover:bg-white/10 hover:text-white transition-colors text-sm"
+              @click="isMobileMenuOpen = false; isInsigniasDropdownOpen = false"
+            >
+              {{ insignia.nombre }}
+            </RouterLink>
+          </div>
+        </div>
+      </li>
+      <li>
+        <RouterLink
+          v-if="route.name !== 'home'"
+          to="/#pagos"
+          :class="[
+            'block text-white border px-4 py-3 rounded-lg transition-colors duration-200 hover:border-white/40 font-medium uppercase',
+            'border-transparent',
+          ]"
+          @click="isMobileMenuOpen = false"
+          >PAGOS</RouterLink
+        >
         <a
+          v-else
           :class="[
             'block text-white border px-4 py-3 rounded-lg transition-colors duration-200 hover:border-white/40 font-medium uppercase',
             activeSection === 'pagos' ? 'border-white' : 'border-transparent',
@@ -245,7 +404,18 @@ onUnmounted(() => {
         >
       </li>
       <li>
+        <RouterLink
+          v-if="route.name !== 'home'"
+          to="/#clientes"
+          :class="[
+            'block text-white border px-4 py-3 rounded-lg transition-colors duration-200 hover:border-white/40 font-medium uppercase',
+            'border-transparent',
+          ]"
+          @click="isMobileMenuOpen = false"
+          >NUESTROS CLIENTES</RouterLink
+        >
         <a
+          v-else
           :class="[
             'block text-white border px-4 py-3 rounded-lg transition-colors duration-200 hover:border-white/40 font-medium uppercase',
             activeSection === 'clientes'
