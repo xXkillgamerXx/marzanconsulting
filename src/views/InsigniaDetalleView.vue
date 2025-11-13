@@ -6,13 +6,14 @@ import g1352 from "@/assets/images/g1352.png";
 import g1388 from "@/assets/images/g1388.png";
 import g1424 from "@/assets/images/g1424.png";
 import g1460 from "@/assets/images/g1460.png";
+import checkIcon from "@/assets/images/check.svg";
 
 const route = useRoute();
 
 const insigniasData = {
   "devops-engineer-associate": {
     id: 1,
-    imagen: g1352,
+    imagen: g1388,
     nombre: "DevOps Engineer Associate",
     color: "bg-blue-400",
     habilidades: [
@@ -80,7 +81,7 @@ const insigniasData = {
   },
   "devsecops-engineer-practitioner": {
     id: 2,
-    imagen: g1388,
+    imagen: g1352,
     nombre: "DevSecOps Engineer Practitioner",
     color: "bg-green-500",
     habilidades: [
@@ -174,7 +175,11 @@ onMounted(() => {
                 :key="index"
                 class="flex items-start gap-3"
               >
-                <i class="fas fa-check-circle text-[#4f2d7f] text-xl mt-1 flex-shrink-0"></i>
+                <img 
+                  :src="checkIcon" 
+                  alt="Check" 
+                  class="w-6 h-6 md:w-7 md:h-7 mt-1 flex-shrink-0"
+                />
                 <span class="text-base md:text-lg leading-relaxed" style="color: #364050;">
                   {{ habilidad }}
                 </span>

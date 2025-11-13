@@ -88,11 +88,13 @@ body {
   font-family: 'Roboto', sans-serif;
 }
 
-/* Animación para items que surgen desde abajo */
+/* Animaciones Cool para elementos */
+
+/* Slide Up con Fade */
 @keyframes slideUpFadeIn {
   from {
     opacity: 0;
-    transform: translateY(30px);
+    transform: translateY(50px);
   }
   to {
     opacity: 1;
@@ -101,15 +103,15 @@ body {
 }
 
 .animate-slide-up {
-  animation: slideUpFadeIn 0.6s ease-out forwards;
+  animation: slideUpFadeIn 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   opacity: 0;
 }
 
-/* Animación para elementos que aparecen al hacer scroll */
+/* Fade In Up - Mejorado */
 @keyframes fadeInUp {
   from {
     opacity: 0;
-    transform: translateY(40px);
+    transform: translateY(60px);
   }
   to {
     opacity: 1;
@@ -117,12 +119,113 @@ body {
   }
 }
 
+/* Fade In con Scale */
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.9) translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Slide Left */
+@keyframes slideLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Slide Right */
+@keyframes slideRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Fade In */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Zoom In */
+@keyframes zoomIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Rotate Fade */
+@keyframes rotateFade {
+  from {
+    opacity: 0;
+    transform: rotate(-5deg) translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: rotate(0deg) translateY(0);
+  }
+}
+
+/* Clases de animación */
 .scroll-animate {
   opacity: 0;
-  transition: opacity 0.3s ease-out;
+  will-change: transform, opacity;
 }
 
 .animate-fade-in-up {
-  animation: fadeInUp 0.8s ease-out forwards;
+  animation: fadeInUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  opacity: 1;
+}
+
+.animate-fade-in-scale {
+  animation: fadeInScale 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  opacity: 1;
+}
+
+.animate-slide-left {
+  animation: slideLeft 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  opacity: 1;
+}
+
+.animate-slide-right {
+  animation: slideRight 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  opacity: 1;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.8s ease-out forwards;
+  opacity: 1;
+}
+
+.animate-zoom-in {
+  animation: zoomIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  opacity: 1;
+}
+
+.animate-rotate-fade {
+  animation: rotateFade 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   opacity: 1;
 }

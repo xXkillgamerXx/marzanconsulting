@@ -50,7 +50,7 @@ const serviciosCloudNative = [
         <div
           v-for="(servicio, index) in serviciosCloudNative"
           :key="index"
-          class="flex items-center gap-3 justify-start animate-slide-up"
+          class="flex items-center gap-3 justify-start animate-slide-left"
           :style="{ animationDelay: `${index * 0.1}s` }"
         >
           <!-- Icono de escudo con check -->

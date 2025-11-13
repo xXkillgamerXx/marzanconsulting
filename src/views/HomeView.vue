@@ -38,6 +38,22 @@ const observeElements = () => {
   // Observar todos los elementos con la clase 'scroll-animate'
   const elements = document.querySelectorAll('.scroll-animate');
   elements.forEach((el) => observer.observe(el));
+
+  // Observar elementos con animate-slide-up para activarlos cuando aparecen
+  const slideUpObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        // Activar la animación removiendo y agregando la clase
+        entry.target.classList.remove('animate-slide-up');
+        void entry.target.offsetWidth; // Forzar reflow
+        entry.target.classList.add('animate-slide-up');
+        slideUpObserver.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  const slideUpElements = document.querySelectorAll('.animate-slide-up');
+  slideUpElements.forEach((el) => slideUpObserver.observe(el));
 };
 
 // Importar logos de clientes

@@ -4,7 +4,7 @@ import EscudoLogo from "@/assets/images/escudo.png";
 
 const serviciosTraining = [
   "Training en Big Data y Machine Learning",
-  "Training en Criptografía",
+  "Training en DEVOPS/DEVSECOPS",
   "Training en Ingeniería Reversa",
   "Training en Ciberseguridad Cloud-Native",
 ];
@@ -60,7 +60,7 @@ const serviciosTraining = [
             <div
               v-for="(servicio, index) in serviciosTraining"
               :key="index"
-              class="flex items-center gap-3 justify-start animate-slide-up"
+              class="flex items-center gap-3 justify-start animate-slide-left"
               :style="{ animationDelay: `${index * 0.1}s` }"
             >
               <!-- Icono de escudo con check -->
