@@ -20,7 +20,7 @@ const validaciones = [
 </script>
 
 <template>
-  <section id="ciberseguridad" class="py-20 px-4 md:px-8 lg:px-16 bg-white">
+  <section id="ciberseguridad" class="py-20 px-4 md:px-8 lg:px-16 ">
     <div class="max-w-7xl mx-auto">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
         <!-- Sección Izquierda: Auditoría IT en Ciberseguridad -->
@@ -36,7 +36,7 @@ const validaciones = [
           </h2>
 
           <!-- Primer Párrafo -->
-          <p class="text-gray-700 text-lg leading-relaxed mb-6">
+          <p class="text-gray-700 text-lg leading-relaxed mb-6 text-left">
             Realizamos una evaluación completa de cumplimiento Cloud-Native de
             la seguridad de tu infraestructura, políticas y operaciones,
             enfocándonos en la seguridad de la Cadena de Suministro de Software y
@@ -46,7 +46,7 @@ const validaciones = [
           </p>
 
           <!-- Segundo Párrafo -->
-          <p class="text-gray-700 text-lg leading-relaxed">
+          <p class="text-gray-700 text-lg leading-relaxed text-left">
             Realizamos evaluaciones a nivel corporativo de procesos, políticas y
             operaciones tecnológicas basadas en estándares ISO/IEC 27001,
             Catálogo de Protección Base IT y COBIT 5. El objetivo es asegurar
@@ -85,14 +85,15 @@ const validaciones = [
             <div
               v-for="(validacion, index) in validaciones"
               :key="index"
-              class="flex items-center gap-3"
+              class="flex items-center gap-3 justify-start animate-slide-up"
+              :style="{ animationDelay: `${index * 0.1}s` }"
             >
               <!-- Icono de escudo con check -->
-              <div  class="flex-shrink-0 border-2 border-gray-300 h-14 w-14 rounded-lg flex items-center justify-center">
+              <div  class="shrink-0 border-2 border-gray-300 h-14 w-14 rounded-lg flex items-center justify-center">
                 <img class="w-12 p-2" :src="EscudoLogo" alt="">
               </div>
               <!-- Texto de validación -->
-              <p class="text-gray-700 text-lg leading-relaxed flex-1">
+              <p class="text-gray-700 text-lg leading-relaxed text-left font-bold w-full">
                 {{ validacion }}
               </p>
             </div>

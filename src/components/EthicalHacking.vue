@@ -6,10 +6,10 @@ const serviciosEthicalHacking = ["Ingeniería Reversa", "PenTesting"];
 </script>
 
 <template>
-  <section id="ciberseguridad" class="py-20 px-4 md:px-8 lg:px-16 bg-white">
+  <section id="ciberseguridad" class="py-20 px-4 md:px-8 lg:px-16">
 
   <div class="max-w-7xl mx-auto">
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mt-32">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
     <!-- Imagen Ethical Hacking (Left Side) -->
     <div class="order-2 lg:order-1">
       <div
@@ -40,7 +40,7 @@ const serviciosEthicalHacking = ["Ingeniería Reversa", "PenTesting"];
       </h2>
 
       <!-- Primer Párrafo -->
-      <p class="text-gray-700 text-lg leading-relaxed mb-6">
+      <p class="text-gray-700 text-lg leading-relaxed mb-6 text-left">
         Realizamos un proceso de detección de vulnerabilidades (pentesting)
         en los sistemas, aplicaciones, datos y la infraestructura de la
         organización. Nuestro enfoque es principalmente grayhat, lo que nos
@@ -50,7 +50,7 @@ const serviciosEthicalHacking = ["Ingeniería Reversa", "PenTesting"];
       </p>
 
       <!-- Segundo Párrafo -->
-      <p class="text-gray-700 text-lg leading-relaxed mb-8">
+      <p class="text-gray-700 text-lg leading-relaxed mb-8 text-left">
         Nuestros procesos incluyen el ganar acceso no autorizado a sistemas
         de computadoras, aplicaciones o datos e ingeniería reversa, para
         finalmente producir un informe de vulnerabilidades encontradas y el
@@ -62,16 +62,17 @@ const serviciosEthicalHacking = ["Ingeniería Reversa", "PenTesting"];
         <div
           v-for="(servicio, index) in serviciosEthicalHacking"
           :key="index"
-          class="flex items-center gap-3"
+          class="flex items-center gap-3 justify-start animate-slide-up"
+          :style="{ animationDelay: `${index * 0.1}s` }"
         >
           <!-- Icono de escudo con check -->
           <div
-            class="flex-shrink-0 border-2 border-gray-300 h-14 w-14 rounded-lg flex items-center justify-center"
+            class="shrink-0 border-2 border-gray-300 h-14 w-14 rounded-lg flex items-center justify-center"
           >
             <img class="w-12 p-2" :src="EscudoLogo" alt="" />
           </div>
           <!-- Texto del servicio -->
-          <p class="text-gray-700 text-lg leading-relaxed flex-1">
+          <p class="text-gray-700 text-lg leading-relaxed text-left font-bold w-full">
             {{ servicio }}
           </p>
         </div>

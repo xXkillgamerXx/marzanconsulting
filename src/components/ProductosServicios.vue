@@ -20,7 +20,7 @@ const tecnologias = [
 </script>
 
 <template>
-  <section id="productos" class="py-20 px-4 md:px-8 lg:px-16 bg-white">
+  <section id="productos" class="py-20 px-4 md:px-8 lg:px-16">
     <div class="max-w-7xl mx-auto">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         <!-- Imagen Laptop (Left Side) -->
@@ -58,7 +58,7 @@ const tecnologias = [
           </h3>
 
           <!-- Párrafo descriptivo -->
-          <p class="text-gray-700 text-lg leading-relaxed mb-8">
+          <p class="text-gray-700 text-lg leading-relaxed mb-8 text-left">
             Diseñamos y desarrollamos tus aplicaciones y microservicios con una
             arquitectura Cloud-Native, flexibles, adaptables, gestionables,
             observables y altamente resilientes. Nuestros proyectos son

@@ -16,6 +16,7 @@ import OficinaSection from "@/components/OficinaSection.vue";
 import ContactModal from "@/components/ContactModal.vue";
 import Footer from "@/components/Footer.vue";
 import { useContactModal } from "@/composables/useContactModal";
+import patternBg from "@/assets/images/g840.png";
 
 // Importar logos de clientes
 import avanexLogo from "@/assets/images/clientes/Avanex-logo.png";
@@ -29,19 +30,6 @@ import qikBanco from "@/assets/images/clientes/Qik-Banco-Digital-Dominicano.png"
 import sicflexLogo from "@/assets/images/clientes/SicFlex-Cloud-Software-Solution.svg";
 import wepsysLogo from "@/assets/images/clientes/wepsys-srl.png";
 
-// Lista de clientes
-const clientes = [
-  { name: "Avanex", logo: avanexLogo, height: "120px" },
-  { name: "Banco Popular", logo: bancoPopular, height: "120px" },
-  { name: "Bricks", logo: bricksLogo, height: "120px" },
-  { name: "Cardnet", logo: cardnetLogo, height: "120px" },
-  { name: "Gam Development", logo: gamDevelopment, height: "120px" },
-  { name: "Metaconxept", logo: metaconxept, height: "120px" },
-  { name: "Novosit", logo: novositLogo, height: "120px" },
-  { name: "Qik Banco", logo: qikBanco, height: "120px" },
-  { name: "SicFlex", logo: sicflexLogo, height: "120px" },
-  { name: "Wepsys", logo: wepsysLogo, height: "120px" },
-];
 
 // Modal de contacto global
 const { isModalOpen, closeModal } = useContactModal();
@@ -52,18 +40,37 @@ const { isModalOpen, closeModal } = useContactModal();
 
   <HeroSection />
 
-  <ProductosServicios />
-  <Ciberseguridad />
-  <EthicalHacking />
+  <div
+    class="relative text-center"
+    :style="{
+      marginTop: '0px',
+      marginBottom: '0px',
+      paddingTop: '0px',
+      paddingBottom: '50px',
+      backgroundColor: '#fff',
+      backgroundImage: `linear-gradient(90deg, hsla(0, 0%, 100%, 0.9), #fff 50%, #fff 0, hsla(0, 0%, 100%, 0.9)), url(${patternBg})`,
+      backgroundPosition: '0px 0px, 50% 50%',
+      backgroundSize: 'auto, auto',
+      backgroundRepeat: 'repeat, repeat',
+      backgroundAttachment: 'scroll, scroll',
+      fontWeight: '300',
+    }"
+  >
+    <div class="relative z-10">
+      <ProductosServicios />
+      <Ciberseguridad />
+      <EthicalHacking />
+      <CloudNativeSecurity />
+      <Training />
+      <SolucionesAI />
+    </div>
+  </div>
 
-  <CloudNativeSecurity />
-  <Training />
-  <SolucionesAI />
   <InsigniasSection />
 
   <ContactSection />
 
-  <ClientesSection :clientes="clientes" />
+  <ClientesSection/>
   <TestimoniosSection />
   <PagosSection />
   <OficinaSection />

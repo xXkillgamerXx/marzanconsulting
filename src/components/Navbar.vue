@@ -30,9 +30,23 @@ const updateActiveSection = () => {
   }
 };
 
-const handleLinkClick = (section) => {
+const handleLinkClick = (e, section) => {
+  e.preventDefault();
   activeSection.value = section;
   isMobileMenuOpen.value = false;
+  // Solo hacer scroll para inicio, pagos y clientes
+  if (["inicio", "pagos", "clientes"].includes(section)) {
+    setTimeout(() => {
+      const element = document.getElementById(section);
+      if (element) {
+        const offsetTop = element.offsetTop - 80; // Ajustar para el navbar fijo
+        window.scrollTo({
+          top: offsetTop,
+          behavior: "smooth",
+        });
+      }
+    }, 100);
+  }
 };
 
 const toggleMobileMenu = () => {
@@ -81,7 +95,7 @@ onUnmounted(() => {
             activeSection === 'inicio' ? 'border-white' : 'border-transparent',
           ]"
           href="#inicio"
-          @click="handleLinkClick('inicio')"
+          @click="(e) => handleLinkClick(e, 'inicio')"
           >Inicio</a
         >
       </li>
@@ -93,8 +107,8 @@ onUnmounted(() => {
               ? 'border-white'
               : 'border-transparent',
           ]"
-          href="#productos"
-          @click="handleLinkClick('productos')"
+          href="#"
+          @click.prevent="(e) => handleLinkClick(e, 'productos')"
           >PRODUCTOS Y SERVICIOS</a
         >
       </li>
@@ -106,8 +120,8 @@ onUnmounted(() => {
               ? 'border-white'
               : 'border-transparent',
           ]"
-          href="#nosotros"
-          @click="handleLinkClick('nosotros')"
+          href="#"
+          @click.prevent="(e) => handleLinkClick(e, 'nosotros')"
           >NOSOTROS</a
         >
       </li>
@@ -118,7 +132,7 @@ onUnmounted(() => {
             activeSection === 'pagos' ? 'border-white' : 'border-transparent',
           ]"
           href="#pagos"
-          @click="handleLinkClick('pagos')"
+          @click="(e) => handleLinkClick(e, 'pagos')"
           >PAGOS</a
         >
       </li>
@@ -131,7 +145,7 @@ onUnmounted(() => {
               : 'border-transparent',
           ]"
           href="#clientes"
-          @click="handleLinkClick('clientes')"
+          @click="(e) => handleLinkClick(e, 'clientes')"
           >NUESTROS CLIENTES</a
         >
       </li>
@@ -141,8 +155,9 @@ onUnmounted(() => {
     <button
       @click="openModal"
       class="hidden md:inline-flex items-center rounded-md bg-[#7f42d5] text-white text-lg px-5 py-3 border border-white/0 hover:border-white hover:bg-white/0 transition-colors font-semibold uppercase cursor-pointer"
-      >CONTÁCTANOS</button
     >
+      CONTÁCTANOS
+    </button>
 
     <!-- Mobile Menu Button -->
     <button
@@ -188,7 +203,7 @@ onUnmounted(() => {
             activeSection === 'inicio' ? 'border-white' : 'border-transparent',
           ]"
           href="#inicio"
-          @click="handleLinkClick('inicio')"
+          @click="(e) => handleLinkClick(e, 'inicio')"
           >Inicio</a
         >
       </li>
@@ -200,8 +215,8 @@ onUnmounted(() => {
               ? 'border-white'
               : 'border-transparent',
           ]"
-          href="#productos"
-          @click="handleLinkClick('productos')"
+          href="#"
+          @click.prevent="(e) => handleLinkClick(e, 'productos')"
           >PRODUCTOS Y SERVICIOS</a
         >
       </li>
@@ -213,8 +228,8 @@ onUnmounted(() => {
               ? 'border-white'
               : 'border-transparent',
           ]"
-          href="#nosotros"
-          @click="handleLinkClick('nosotros')"
+          href="#"
+          @click.prevent="(e) => handleLinkClick(e, 'nosotros')"
           >NOSOTROS</a
         >
       </li>
@@ -225,7 +240,7 @@ onUnmounted(() => {
             activeSection === 'pagos' ? 'border-white' : 'border-transparent',
           ]"
           href="#pagos"
-          @click="handleLinkClick('pagos')"
+          @click="(e) => handleLinkClick(e, 'pagos')"
           >PAGOS</a
         >
       </li>
@@ -238,16 +253,22 @@ onUnmounted(() => {
               : 'border-transparent',
           ]"
           href="#clientes"
-          @click="handleLinkClick('clientes')"
+          @click="(e) => handleLinkClick(e, 'clientes')"
           >NUESTROS CLIENTES</a
         >
       </li>
       <li>
         <button
-          @click="() => { openModal(); isMobileMenuOpen = false; }"
+          @click="
+            () => {
+              openModal();
+              isMobileMenuOpen = false;
+            }
+          "
           class="block w-full text-center rounded-md bg-[#7f42d5] text-white px-5 py-3 border border-white/0 hover:border-white hover:bg-white/0 transition-colors font-semibold uppercase mt-2 cursor-pointer"
-          >CONTÁCTANOS</button
         >
+          CONTÁCTANOS
+        </button>
       </li>
     </ul>
   </div>

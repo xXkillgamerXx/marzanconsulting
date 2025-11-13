@@ -11,7 +11,7 @@ const serviciosTraining = [
 </script>
 
 <template>
-  <section id="training" class="py-20 px-4 md:px-8 lg:px-16 bg-white">
+  <section id="training" class="py-20 px-4 md:px-8 lg:px-16">
     <div class="max-w-7xl mx-auto">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         <!-- Imagen Training (Left Side) -->
@@ -42,14 +42,14 @@ const serviciosTraining = [
           </h2>
 
           <!-- Primer Párrafo -->
-          <p class="text-gray-700 text-lg leading-relaxed mb-6">
+          <p class="text-gray-700 text-lg leading-relaxed mb-6 text-left">
             Estos entrenamientos son especializados y nuestro personal tiene más
             de 5 años en los tópicos de Big Data, Machine Learning/Deep
             Learning.
           </p>
 
           <!-- Segundo Párrafo -->
-          <p class="text-gray-700 text-lg leading-relaxed mb-8">
+          <p class="text-gray-700 text-lg leading-relaxed mb-8 text-left">
             Nuestra experiencia en Ciberseguridad, Criptografía e Ingeniería
             Reversa es de más de 20 años, y hemos ya impartido estos
             entrenamientos con éxito para algunos de nuestros clientes.
@@ -60,21 +60,23 @@ const serviciosTraining = [
             <div
               v-for="(servicio, index) in serviciosTraining"
               :key="index"
-              class="flex items-center gap-3"
+              class="flex items-center gap-3 justify-start animate-slide-up"
+              :style="{ animationDelay: `${index * 0.1}s` }"
             >
               <!-- Icono de escudo con check -->
               <div
-                class="flex-shrink-0 border-2 border-gray-300 h-14 w-14 rounded-lg flex items-center justify-center"
+                class="shrink-0 border-2 border-gray-300 h-14 w-14 rounded-lg flex items-center justify-center"
               >
                 <img class="w-12 p-2" :src="EscudoLogo" alt="" />
               </div>
               <!-- Texto del servicio -->
-              <p class="text-gray-700 text-lg leading-relaxed flex-1">
+              <p
+                class="text-gray-700 text-lg leading-relaxed text-left font-bold w-full"
+              >
                 {{ servicio }}
               </p>
             </div>
           </div>
-
         </div>
       </div>
     </div>
