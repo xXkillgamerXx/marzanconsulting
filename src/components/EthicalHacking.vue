@@ -34,7 +34,7 @@ const serviciosEthicalHacking = ["Ingeniería Reversa", "PenTesting"];
 
       <!-- Título Principal -->
       <h2
-        class="flex gap-2 text-4xl md:text-4xl text-center md:text-start  text-[#4f2d7f] mb-6"
+        class="flex flex-col md:flex-row gap-2 text-3xl md:text-4xl text-center md:text-start text-[#4f2d7f] mb-6"
       >
         <div class="font-bold">Ethical</div> <div class="">Hacking</div>
       </h2>

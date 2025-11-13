@@ -45,14 +45,14 @@ const tecnologias = [
 
           <!-- Título Principal -->
           <h2
-            class="text-4xl md:text-4xl text-center md:text-start font-bold text-[#4f2d7f] mb-2"
+            class="text-3xl md:text-4xl text-center md:text-start font-bold text-[#4f2d7f] mb-2"
           >
             Desarrollo de Software
           </h2>
 
           <!-- Subtítulo -->
           <h3
-            class="text-4xl md:text-3xl text-center md:text-start text-[#4f2d7f] mb-6"
+            class="text-2xl md:text-3xl text-center md:text-start text-[#4f2d7f] mb-6"
           >
             Cloud-Native
           </h3>

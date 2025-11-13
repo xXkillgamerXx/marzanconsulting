@@ -24,14 +24,14 @@ const serviciosCloudNative = [
 
       <!-- Título Principal -->
       <h2
-        class="text-4xl md:text-4xl text-center md:text-start font-bold text-[#4f2d7f] mb-2"
+        class="text-3xl md:text-4xl text-center md:text-start font-bold text-[#4f2d7f] mb-2"
       >
         Cloud-Native
       </h2>
 
       <!-- Subtítulo -->
       <h3
-        class="text-4xl md:text-3xl text-center md:text-start text-[#4f2d7f] mb-6"
+        class="text-2xl md:text-3xl text-center md:text-start text-[#4f2d7f] mb-6"
       >
         Security Specialist
       </h3>
@@ -65,9 +65,8 @@ const serviciosCloudNative = [
         </div>
       </div>
     </div>
-
     <!-- Imagen Cloud-Native Security (Right Side) -->
-    <div class="order-2 lg:order-2">
+    <div class="order-1 lg:order-2">
       <div
         class="relative w-full min-h-[400px] lg:min-h-[500px] bg-gray-200 rounded-lg overflow-hidden"
       >

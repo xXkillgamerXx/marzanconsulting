@@ -16,8 +16,10 @@ const serviciosTraining = [
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         <!-- Imagen Training (Left Side) -->
         <div
-          class="order-2 lg:order-1 h-full bg-[url('@/assets/images/pexels-photo-247819.jpg')] bg-[50%_50%] bg-contain bg-repeat"
-        ></div>
+          class="order-1 lg:order-2 h-full bg-[url('@/assets/images/pexels-photo-247819.jpg')] rounded-lg bg-[50%_50%] bg-contain bg-repeat"
+        >
+          <div class="min-h-[400px]"></div>
+        </div>
 
         <!-- Contenido de Texto (Right Side) -->
         <div class="order-2">
@@ -30,8 +32,10 @@ const serviciosTraining = [
 
           <!-- Título Principal -->
           <h2 class="text-center md:text-start text-[#4f2d7f] mb-6">
-            <div class="text-4xl font-bold ">Training en Big Data/ML</div>
-            <div class="text-3xl  text-md mt-2">
+            <div class="text-3xl md:text-4xl font-bold">
+              Training en Big Data/ML
+            </div>
+            <div class="text-1xl md:text-2xl mt-2">
               Criptografía y Ciberseguridad <br />
               Cloud-Native
             </div>
@@ -70,6 +74,7 @@ const serviciosTraining = [
               </p>
             </div>
           </div>
+
         </div>
       </div>
     </div>

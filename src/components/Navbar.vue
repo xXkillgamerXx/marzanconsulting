@@ -1,6 +1,9 @@
 <script setup>
 import { ref, onMounted, onUnmounted } from "vue";
 import logoFull from "@/assets/images/MMC-logo.png";
+import { useContactModal } from "@/composables/useContactModal";
+
+const { openModal } = useContactModal();
 
 const activeSection = ref("inicio");
 const isMobileMenuOpen = ref(false);
@@ -54,7 +57,7 @@ onUnmounted(() => {
 
 <template>
   <nav
-    class="flex items-center justify-between gap-4 px-4 md:px-18 py-3 bg-[#4f2d7f] md:shadow-md border-b border-transparent fixed top-0 left-0 right-0 z-50"
+    class="flex items-center justify-between gap-4 px-4 md:px-18 py-3 bg-[#4f2d7f]/90 md:shadow-md border-b border-transparent fixed top-0 left-0 right-0 z-50"
     aria-label="Primary"
   >
     <a
@@ -135,10 +138,10 @@ onUnmounted(() => {
     </ul>
 
     <!-- Desktop Contact Button -->
-    <a
-      class="hidden md:inline-flex items-center rounded-md bg-[#7f42d5] text-white text-lg px-5 py-3 border border-white/0 hover:border-white hover:bg-white/0 transition-colors font-semibold uppercase"
-      href="#contacto"
-      >CONTÁCTANOS</a
+    <button
+      @click="openModal"
+      class="hidden md:inline-flex items-center rounded-md bg-[#7f42d5] text-white text-lg px-5 py-3 border border-white/0 hover:border-white hover:bg-white/0 transition-colors font-semibold uppercase cursor-pointer"
+      >CONTÁCTANOS</button
     >
 
     <!-- Mobile Menu Button -->
@@ -240,11 +243,10 @@ onUnmounted(() => {
         >
       </li>
       <li>
-        <a
-          class="block text-center rounded-md bg-[#7f42d5] text-white px-5 py-3 border border-white/0 hover:border-white hover:bg-white/0 transition-colors font-semibold uppercase mt-2"
-          href="#contacto"
-          @click="isMobileMenuOpen = false"
-          >CONTÁCTANOS</a
+        <button
+          @click="() => { openModal(); isMobileMenuOpen = false; }"
+          class="block w-full text-center rounded-md bg-[#7f42d5] text-white px-5 py-3 border border-white/0 hover:border-white hover:bg-white/0 transition-colors font-semibold uppercase mt-2 cursor-pointer"
+          >CONTÁCTANOS</button
         >
       </li>
     </ul>

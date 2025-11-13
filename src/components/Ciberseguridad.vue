@@ -30,9 +30,9 @@ const validaciones = [
             CIBERSEGURIDAD
           </p>
 
-          <h2 class="flex gap-2 text-[#4f2d7f] mb-4">
-            <div class="text-4xl font-bold ">Auditoría IT</div>
-            <div class="text-4xl">en Ciberseguridad</div>
+          <h2 class="flex flex-col md:flex-row gap-2 text-[#4f2d7f] mb-4">
+            <div class="text-3xl md:text-4xl font-bold text-center md:text-start">Auditoría IT</div>
+            <div class="text-3xl md:text-4xl text-center md:text-start">en Ciberseguridad</div>
           </h2>
 
           <!-- Primer Párrafo -->
@@ -59,7 +59,7 @@ const validaciones = [
         <div>
 
           <!-- Título Estándares -->
-          <h3 class="text-3xl md:text-4xl mt-8 text-center font-bold text-[#4f2d7f] mb-8">
+          <h3 class="text-2xl md:text-3xl mt-8 text-center font-bold text-[#4f2d7f] mb-8">
             Estándares
           </h3>
 

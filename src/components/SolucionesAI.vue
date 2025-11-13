@@ -16,9 +16,10 @@ const serviciosAI = [
 <template>
   <section id="soluciones-ai" class="py-20 px-4 md:px-8 lg:px-16 bg-white">
     <div class="max-w-7xl mx-auto">
+
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         <!-- Contenido de Texto (Left Side) -->
-        <div class="order-2">
+        <div class="order-2 lg:order-1">
           <!-- Heading pequeño -->
           <p
             class="text-gray-400 text-lg text-center md:text-start uppercase tracking-wide mb-2"
@@ -28,7 +29,7 @@ const serviciosAI = [
 
           <!-- Título Principal -->
           <h2
-            class="text-4xl text-center md:text-start font-bold text-[#4f2d7f] mb-6"
+            class="text-3xl md:text-4xl text-center md:text-start font-bold text-[#4f2d7f] mb-6"
           >
             Soluciones AI
           </h2>
@@ -59,11 +60,12 @@ const serviciosAI = [
               </p>
             </div>
           </div>
+
         </div>
 
         <!-- Imagen Soluciones AI (Right Side) -->
         <div
-          class="order-2 lg:order-1 h-full bg-[url('@/assets/images/Soluciones_AI.png')]"
+          class="order-1 lg:order-2 h-full bg-[url('@/assets/images/Soluciones_AI.png')]"
           style="
             background-position: 50% 50%;
             background-size: cover;
