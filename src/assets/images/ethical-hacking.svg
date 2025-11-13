@@ -1,0 +1,11 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Mask/Goggles -->
+  <ellipse cx="32" cy="32" rx="20" ry="16" fill="#4f2d7f"/>
+  <!-- Left Eye -->
+  <circle cx="24" cy="30" r="6" fill="white"/>
+  <!-- Right Eye -->
+  <circle cx="40" cy="30" r="6" fill="white"/>
+  <!-- Nose Bridge -->
+  <path d="M30 40 L32 42 L34 40" stroke="white" stroke-width="2" fill="none"/>
+</svg>
+

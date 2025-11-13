@@ -1,9 +1,8 @@
 <script setup>
 import backgroundImage from "@/assets/images/Photo-10.jpg";
-import ContactModal from "@/components/ContactModal.vue";
 import { useContactModal } from "@/composables/useContactModal";
 
-const { isModalOpen, openModal, closeModal } = useContactModal();
+const { openModal } = useContactModal();
 </script>
 
 <template>
@@ -42,8 +41,5 @@ const { isModalOpen, openModal, closeModal } = useContactModal();
       </div>
     </div>
   </section>
-
-  <!-- Modal de Contacto -->
-  <ContactModal :isOpen="isModalOpen" @close="closeModal" />
 </template>
 

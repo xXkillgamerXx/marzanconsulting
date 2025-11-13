@@ -44,15 +44,45 @@ const handleMensajeChange = (e) => {
 const handleSubmit = async (e) => {
   e.preventDefault();
   
-  // Aquí puedes agregar la lógica para enviar el email
-  // Por ejemplo, usando EmailJS, un backend API, o Formspree
-  console.log('Formulario enviado:', formData.value);
+  // Obtener el nombre del servicio seleccionado
+  const servicioSeleccionado = servicios.find(s => s.value === formData.value.servicio);
+  const nombreServicio = servicioSeleccionado ? servicioSeleccionado.label : 'No especificado';
   
-  // Ejemplo con EmailJS (necesitarías configurar EmailJS primero):
-  // await emailjs.send('service_id', 'template_id', formData.value);
+  // Construir el cuerpo del mensaje para Gmail
+  const cuerpoEmail = `Hola,
+
+Mi nombre es ${formData.value.nombre}
+Email: ${formData.value.email}
+Empresa: ${formData.value.empresa || 'No especificada'}
+Teléfono: ${formData.value.telefono || 'No especificado'}
+Servicio de interés: ${nombreServicio}
+
+Mensaje:
+${formData.value.mensaje}
+
+Saludos cordiales.`;
   
-  // Por ahora, solo mostramos un alert
-  alert('Mensaje enviado. Nos pondremos en contacto contigo pronto.');
+  // Crear enlace de Gmail
+  const emailTo = 'hmarzan@marzanconsulting.com';
+  const subject = encodeURIComponent(`Solicitud de Contacto - ${formData.value.nombre}`);
+  const body = encodeURIComponent(cuerpoEmail);
+  const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${emailTo}&su=${subject}&body=${body}`;
+  
+  // Crear mensaje para WhatsApp
+  const mensajeWhatsApp = encodeURIComponent(`Hola, me interesa contactar con ustedes.
+
+Nombre: ${formData.value.nombre}
+Email: ${formData.value.email}
+Empresa: ${formData.value.empresa || 'No especificada'}
+Teléfono: ${formData.value.telefono || 'No especificado'}
+Servicio: ${nombreServicio}
+
+${formData.value.mensaje}`);
+  const whatsappUrl = `https://wa.me/18093035667?text=${mensajeWhatsApp}`;
+  
+  // Abrir Gmail y WhatsApp
+  window.open(gmailUrl, '_blank');
+  window.open(whatsappUrl, '_blank');
   
   // Limpiar formulario
   formData.value = {

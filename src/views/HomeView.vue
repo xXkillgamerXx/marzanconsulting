@@ -14,8 +14,6 @@ import InsigniasSection from "@/components/InsigniasSection.vue";
 import PagosSection from "@/components/PagosSection.vue";
 import ContactSection from "@/components/ContactSection.vue";
 import OficinaSection from "@/components/OficinaSection.vue";
-import ContactModal from "@/components/ContactModal.vue";
-import { useContactModal } from "@/composables/useContactModal";
 import patternBg from "@/assets/images/g840.png";
 
 const route = useRoute();
@@ -81,9 +79,6 @@ const clientes = [
   { name: "SicFlex", logo: sicflexLogo, height: "120px" },
   { name: "Wepsys", logo: wepsysLogo, height: "120px" },
 ];
-
-// Modal de contacto global
-const { isModalOpen, closeModal } = useContactModal();
 
 // Manejar scroll a sección cuando se navega con hash
 onMounted(() => {
@@ -180,8 +175,5 @@ onMounted(() => {
   <div class="scroll-animate">
     <OficinaSection />
   </div>
-
-  <!-- Modal de Contacto Global -->
-  <ContactModal :isOpen="isModalOpen" @close="closeModal" />
 </template>
 

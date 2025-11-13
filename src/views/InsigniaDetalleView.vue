@@ -1,5 +1,5 @@
 <script setup>
-import { computed, onMounted } from 'vue';
+import { computed, ref, onMounted } from 'vue';
 import { useRoute, RouterLink } from 'vue-router';
 import pagosBackground from "@/assets/images/Actualiza-Web-como-aceptar-pagos-en-linea.jpg";
 import g1352 from "@/assets/images/g1352.png";
@@ -9,6 +9,15 @@ import g1460 from "@/assets/images/g1460.png";
 import checkIcon from "@/assets/images/check.svg";
 
 const route = useRoute();
+const isModalPrecioOpen = ref(false);
+
+const abrirModalPrecio = () => {
+  isModalPrecioOpen.value = true;
+};
+
+const cerrarModalPrecio = () => {
+  isModalPrecioOpen.value = false;
+};
 
 const insigniasData = {
   "devops-engineer-associate": {
@@ -16,6 +25,11 @@ const insigniasData = {
     imagen: g1388,
     nombre: "DevOps Engineer Associate",
     color: "bg-blue-400",
+    precio: "779 USD por persona",
+    precioNumero: 779,
+    minimo: 8,
+    maximo: null,
+    descripcion: "Certificación de nivel asociado en DevOps",
     habilidades: [
       "Version control",
       "Code maintainability",
@@ -35,6 +49,11 @@ const insigniasData = {
     imagen: g1460,
     nombre: "DevOps Engineer Practitioner",
     color: "bg-orange-500",
+    precio: "1,299 USD por persona",
+    precioNumero: 1299,
+    minimo: 10,
+    maximo: null,
+    descripcion: "Certificación de nivel practicante en DevOps",
     habilidades: [
       "Version control",
       "Code maintainability",
@@ -57,6 +76,11 @@ const insigniasData = {
     imagen: g1424,
     nombre: "DevOps Engineer Professional",
     color: "bg-blue-600",
+    precio: "1,699 USD por persona",
+    precioNumero: 1699,
+    minimo: 8,
+    maximo: 12,
+    descripcion: "Certificación de nivel profesional en DevOps",
     habilidades: [
       "Version control",
       "Code maintainability",
@@ -84,6 +108,11 @@ const insigniasData = {
     imagen: g1352,
     nombre: "DevSecOps Engineer Practitioner",
     color: "bg-green-500",
+    precio: "1,999 USD por persona",
+    precioNumero: 1999,
+    minimo: 4,
+    maximo: null,
+    descripcion: "Certificación de nivel practicante en DevSecOps",
     habilidades: [
       "Version control",
       "Code maintainability",
@@ -154,13 +183,23 @@ onMounted(() => {
         <!-- Grid: Imagen y Habilidades -->
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start mb-12">
           <!-- Imagen de la Insignia -->
-          <div class="flex justify-center lg:justify-start">
-            <div class="w-full max-w-md">
+          <div class="flex flex-col items-center lg:items-start">
+            <div class="w-full max-w-md mb-6">
               <img
                 :src="insignia.imagen"
                 :alt="insignia.nombre"
                 class="w-full h-auto object-contain"
               />
+            </div>
+            
+            <!-- Botón Comprar -->
+            <div class="w-full max-w-md">
+              <button
+                @click="abrirModalPrecio"
+                class="w-full bg-[#4f2d7f] hover:bg-[#3d2363] text-white font-bold py-3 px-8 rounded-lg transition-colors uppercase text-center"
+              >
+                Comprar
+              </button>
             </div>
           </div>
 
@@ -188,6 +227,81 @@ onMounted(() => {
           </div>
         </div>
 
+      </div>
+    </div>
+
+    <!-- Modal de Precio -->
+    <div
+      v-if="isModalPrecioOpen && insignia"
+      class="fixed inset-0 z-50 flex items-center justify-center bg-black/30 backdrop-blur-sm p-4"
+      @click.self="cerrarModalPrecio"
+    >
+      <div class="bg-white rounded-lg shadow-2xl max-w-md w-full relative z-10">
+        <!-- Header del Modal -->
+        <div class="bg-[#4f2d7f] text-white px-6 py-4 flex justify-between items-center rounded-t-lg">
+          <h3 class="text-xl md:text-2xl font-bold uppercase">Precio</h3>
+          <button
+            @click="cerrarModalPrecio"
+            class="text-white hover:text-gray-200 transition-colors"
+          >
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+
+        <!-- Contenido del Modal -->
+        <div class="p-6 text-center">
+          <div class="flex justify-center mb-6">
+            <div class="w-48 h-48 md:w-56 md:h-56 flex items-center justify-center">
+              <img
+                :src="insignia.imagen"
+                :alt="insignia.nombre"
+                class="w-full h-full object-contain"
+              />
+            </div>
+          </div>
+          
+          <h4 class="text-xl md:text-2xl font-bold text-[#4f2d7f] mb-4 uppercase flex flex-col gap-1">
+            <div>{{ insignia.nombre.split(' ').slice(0, -1).join(' ') }}</div>
+            <div>{{ insignia.nombre.split(' ').slice(-1).join(' ') }}</div>
+          </h4>
+          
+          <p class="text-3xl md:text-4xl font-bold text-[#4f2d7f] mb-2">
+            ${{ insignia.precioNumero }} USD por persona
+          </p>
+
+          <div class="text-gray-700 mb-4 space-y-1">
+            <p class="text-base md:text-lg">
+              Mínimo {{ insignia.minimo }} personas*
+            </p>
+            <p v-if="insignia.maximo" class="text-base md:text-lg">
+              Máximo {{ insignia.maximo }} personas*
+            </p>
+          </div>
+          
+          <p class="text-gray-600 mb-6">
+            {{ insignia.descripcion }}
+          </p>
+        </div>
+
+        <!-- Footer del Modal -->
+        <div class="bg-gray-100 px-6 py-4 flex justify-end gap-4 rounded-b-lg">
+          <button
+            @click="cerrarModalPrecio"
+            class="px-6 py-2 bg-gray-300 text-gray-700 rounded-lg hover:bg-gray-400 transition-colors font-semibold"
+          >
+            Cerrar
+          </button>
+          <a
+            href="https://www.paypal.com/paypalme/marzanconsulting"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="px-6 py-2 bg-[#4f2d7f] text-white rounded-lg hover:bg-[#3d2363] transition-colors font-semibold"
+          >
+            Pagar
+          </a>
+        </div>
       </div>
     </div>
   </div>

@@ -1,0 +1,12 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Monitor -->
+  <rect x="8" y="12" width="24" height="18" rx="2" fill="#4f2d7f"/>
+  <rect x="18" y="30" width="4" height="2" rx="1" fill="#4f2d7f"/>
+  
+  <!-- Computer Tower -->
+  <rect x="36" y="16" width="12" height="20" rx="2" fill="#4f2d7f"/>
+  <rect x="38" y="20" width="2" height="2" rx="1" fill="#4f2d7f"/>
+  <rect x="38" y="24" width="2" height="2" rx="1" fill="#4f2d7f"/>
+  <rect x="38" y="28" width="2" height="2" rx="1" fill="#4f2d7f"/>
+</svg>
+

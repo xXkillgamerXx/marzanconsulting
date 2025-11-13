@@ -1,6 +1,18 @@
 <script setup>
 import logoMini from "@/assets/images/logo- mini.png";
 import heroVideo from "@/assets/videos/video-mmc-bg.mp4";
+
+const scrollToClientes = (e) => {
+  e.preventDefault();
+  const element = document.getElementById('clientes');
+  if (element) {
+    const offsetTop = element.offsetTop - 80; // Offset para el navbar
+    window.scrollTo({
+      top: offsetTop,
+      behavior: 'smooth'
+    });
+  }
+};
 </script>
 
 <template>
@@ -35,7 +47,8 @@ import heroVideo from "@/assets/videos/video-mmc-bg.mp4";
         <div class="mt-8">
           <a
             href="#clientes"
-            class="inline-flex items-center rounded-md bg-[#7f42d5] text-white px-10 py-5 font-semibold border-2 border-white/0 uppercase hover:border-white hover:bg-[#7f42d5]/60 transition-colors"
+            @click="scrollToClientes"
+            class="inline-flex items-center rounded-md bg-[#7f42d5] text-white px-10 py-5 font-semibold border-2 border-white/0 uppercase hover:border-white hover:bg-[#7f42d5]/60 transition-colors cursor-pointer"
             >NUESTROS CLIENTES</a
           >
         </div>
